@@ -114,7 +114,7 @@
 
 /* PWM
  */
-#define DIRECT_PWM_OUTPUT_CHANNELS   8
+#define DIRECT_PWM_OUTPUT_CHANNELS   6
 
 #define BOARD_HAS_PWM  DIRECT_PWM_OUTPUT_CHANNELS
 
@@ -123,8 +123,12 @@
 #define GPIO_PA4                       	/* PA4 */  (GPIO_INPUT|GPIO_PULLUP|GPIO_PORTA|GPIO_PIN4)
 #define GPIO_PC0                       	/* PC0 */  (GPIO_INPUT|GPIO_PULLUP|GPIO_PORTC|GPIO_PIN0)
 #define GPIO_PC1                       	/* PC1 */  (GPIO_INPUT|GPIO_PULLUP|GPIO_PORTC|GPIO_PIN1)
-/* Tone alarm output */
 
+/* Define GPIO pins for motor direction control */
+#define GPIO_DIR1_MOTOR_OUT1    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN9)
+#define GPIO_DIR2_MOTOR_OUT3    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN13)
+
+/* Tone alarm output */
 #define TONE_ALARM_TIMER        3 /* Timer 4 */
 #define TONE_ALARM_CHANNEL      4  /* PD14 GPIO_TIM4_CH3 NC */
 /*NC can be modified with Spare GPIO then connected with hardware */
@@ -176,6 +180,8 @@
 		GPIO_SPL_ADDR_SET, \
 		GPIO_PC0, \
 		GPIO_PC1, \
+		GPIO_DIR1_MOTOR_OUT1, \
+      GPIO_DIR2_MOTOR_OUT3, \
 	}
 
 #define BOARD_ENABLE_CONSOLE_BUFFER

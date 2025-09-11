@@ -114,7 +114,7 @@ static int ramtron_attach(mtd_instance_s &instance)
 
 	/* if last attempt is still unsuccessful, abort */
 	if (instance.mtd_dev == nullptr) {
-		PX4_ERR("failed to initialize mtd driver");
+		//PX4_ERR("failed to initialize mtd driver");
 		return -EIO;
 	}
 
@@ -427,11 +427,11 @@ memoryout:
 errout:
 
 		if (rv < 0) {
-			PX4_ERR("mtd failure: %d bus %" PRId32 " address %" PRId32 " class %d",
+			/*PX4_ERR("mtd failure: %d bus %" PRId32 " address %" PRId32 " class %d",
 				rv,
 				PX4_I2C_DEVID_BUS(instances[i]->devid),
 				PX4_I2C_DEVID_ADDR(instances[i]->devid),
-				mtd_list->entries[num_entry]->partd[instances[i]->n_partitions_current].type);
+				mtd_list->entries[num_entry]->partd[instances[i]->n_partitions_current].type);*/
 			break;
 		}
 	}
