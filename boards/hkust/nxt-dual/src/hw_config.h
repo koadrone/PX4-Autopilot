@@ -95,10 +95,7 @@
 //#define USE_VBUS_PULL_DOWN
 #define INTERFACE_USART                6
 #define INTERFACE_USART_CONFIG         "/dev/ttyS5,57600"
-#define BOOT_DELAY_ADDRESS             0x000001F0   // 펌웨어 선택 지연
-#define USB_DEVICENAME 				   "PX4 BL"	    // QGroundControl 및 Mission Planner에서 감지를 허용합니다.
-#define FLASH_BASE_ADDRESS  		   0x08000000   // PX4 및 ArduPilot에 대한 공유 플래시 주소
-#define BOOTLOADER_SIZE     		   (128 * 1024)	// 128KB 부트로더
+#define BOOT_DELAY_ADDRESS             0x000001a0
 #define BOARD_TYPE                     1013
 #define BOARD_FLASH_SECTORS            (14)
 #define BOARD_FLASH_SIZE               (16 * 128 * 1024)

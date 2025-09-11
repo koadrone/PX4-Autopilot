@@ -125,8 +125,8 @@
 #define GPIO_PC1                       	/* PC1 */  (GPIO_INPUT|GPIO_PULLUP|GPIO_PORTC|GPIO_PIN1)
 /* Tone alarm output */
 
-#define TONE_ALARM_TIMER        3 /* Timer 4 */
-#define TONE_ALARM_CHANNEL      4  /* PD14 GPIO_TIM4_CH3 NC */
+#define TONE_ALARM_TIMER        4 /* Timer 4 */
+#define TONE_ALARM_CHANNEL      3  /* PD14 GPIO_TIM4_CH3 NC */
 /*NC can be modified with Spare GPIO then connected with hardware */
 #define GPIO_BUZZER_1           /* PA4 */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTA|GPIO_PIN4)
 
