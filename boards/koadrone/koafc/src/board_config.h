@@ -89,20 +89,22 @@
 #define ADC12_CH(n)		(n)
 
 #define PX4_ADC_GPIO  \
-	/* PC4  */  GPIO_ADC12_INP4,   \
-	/* PC5  */  GPIO_ADC12_INP8
+	/* PC4  */  GPIO_ADC12_INP4, \
+	/* PC5  */  GPIO_ADC12_INP8, \
+	/* PA4  */  GPIO_ADC12_INP18 		// VBAT pin for power module
 
 /* Define GPIO pins used as ADC N.B. Channel numbers must match below  */
 /* Define Channel numbers must match above GPIO pin IN(n)*/
-#define ADC_BATTERY_VOLTAGE_CHANNEL             ADC12_CH(4)
-#define ADC_BATTERY_CURRENT_CHANNEL             ADC12_CH(8)
+#define ADC_BATTERY_VOLTAGE_CHANNEL		ADC12_CH(4)
+#define ADC_BATTERY_CURRENT_CHANNEL		ADC12_CH(8)
+#define ADC_BATTERY2_VOLTAGE_CHANNEL	ADC12_CH(18)	// VBAT pin for power module
 
 #define ADC_CHANNELS \
 	((1 << ADC_BATTERY_VOLTAGE_CHANNEL) | \
-	 (1 << ADC_BATTERY_CURRENT_CHANNEL))
+	 (1 << ADC_BATTERY_CURRENT_CHANNEL) | \
+	 (1 << ADC_BATTERY2_VOLTAGE_CHANNEL)) 		// VBAT pin for power module
 
 #define BOARD_ADC_OPEN_CIRCUIT_V     (1.6f)
-
 
 
 /* Define Battery 1 Voltage Divider and A per V
@@ -128,7 +130,9 @@
 #define TONE_ALARM_TIMER        3 /* Timer 4 */
 #define TONE_ALARM_CHANNEL      4  /* PD14 GPIO_TIM4_CH3 NC */
 /*NC can be modified with Spare GPIO then connected with hardware */
-#define GPIO_BUZZER_1           /* PA4 */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTA|GPIO_PIN4)
+//#define GPIO_BUZZER_1           /* PA4 */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTA|GPIO_PIN4)
+// changed Buzzer 1 to PC1 pin because we have defined PA4 as VBAT for power module
+#define GPIO_BUZZER_1           /* PC1 */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTC|GPIO_PIN1)
 
 #define GPIO_TONE_ALARM_IDLE    GPIO_BUZZER_1
 #define GPIO_TONE_ALARM         GPIO_BUZZER_1
