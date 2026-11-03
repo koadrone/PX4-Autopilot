@@ -17,7 +17,8 @@ param set-default MC_YAWRATE_MAX 360
 param set-default MAV_TYPE 2
 param set-default CA_AIRFRAME 0
 param set-default CA_ROTOR_COUNT 4
-param set-default CBRK_SUPPLY_CHK 894281
+# CBRK_SUPPLY_CHK is intentionally left at 0: it would also disable the battery failsafe.
+# The board has no 5V rail sense; powerCheck skips that check when ADC_SCALED_V5_SENSE is undefined.
 
 param set-default SYS_HAS_MAG 1 	 # magnetometer
 param set-default SENS_EN_SPA06 1 	 # barometer

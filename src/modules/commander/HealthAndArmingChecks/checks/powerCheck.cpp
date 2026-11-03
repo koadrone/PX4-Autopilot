@@ -33,6 +33,7 @@
 
 #include "powerCheck.hpp"
 #include <lib/circuit_breaker/circuit_breaker.h>
+#include <px4_platform_common/px4_config.h>   // board_config.h (ADC_SCALED_V5_SENSE)
 
 using namespace time_literals;
 
@@ -80,6 +81,10 @@ void PowerChecks::checkAndReport(const Context &context, Report &reporter)
 	if (_system_power_sub.copy(&system_power)) {
 		// Check avionics rail voltages (if USB isn't connected)
 		if (!system_power.usb_connected) {
+#if defined(ADC_SCALED_V5_SENSE)
+			// Boards without a 5V rail sense (e.g. KoaFC) always report 0 V here, so the rail check is only
+			// meaningful when the ADC channel exists. Skipping it lets such boards keep CBRK_SUPPLY_CHK off,
+			// which would otherwise also disable the battery checks and failsafes.
 			float avionics_power_rail_voltage = system_power.voltage5v_v;
 
 			const float low_error_threshold = 4.7f;
@@ -126,6 +131,8 @@ void PowerChecks::checkAndReport(const Context &context, Report &reporter)
 							     (double)avionics_power_rail_voltage);
 				}
 			}
+
+#endif // ADC_SCALED_V5_SENSE
 
 			const int power_module_count = math::countSetBits(system_power.brick_valid);
 
